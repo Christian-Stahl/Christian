@@ -1,82 +1,36 @@
-
-(function() {
-	function ready(fn) {
-		if (document.readyState != 'loading'){
-			fn();
-		} else {
-			document.addEventListener('DOMContentLoaded', fn);
-		}
-	}
-	
-	function makeSnow(el) {
-		var ctx = el.getContext('2d');
-		var width = 0;
-		var height = 0;
-		var particles = [];
-		
-		var Particle = function() {
-			this.x = this.y = this.dx = this.dy = 0;
-			this.reset();
-		}
-		
-		Particle.prototype.reset = function() {
-			this.y = Math.random() * height;
-			this.x = Math.random() * width;
-			this.dx = (Math.random() * 1) - 0.5;
-			this.dy = (Math.random() * 0.5) + 0.5;
-		}
-		
-		function createParticles(count) {
-			if (count != particles.length) {
-				particles = [];
-				for (var i = 0; i < count; i++) {
-					particles.push(new Particle());
-				}
-			}
-		}
-				
-		function onResize() {
-			width = window.innerWidth;
-			height = window.innerHeight;
-			el.width = width;
-			el.height = height;
-			
-			createParticles((width * height) / 10000);
-		}
-		
-		function updateParticles() {
-			ctx.clearRect(0, 0, width, height);
-			ctx.fillStyle = '#f6f9fa';
-			
-			particles.forEach(function(particle) {
-				particle.y += particle.dy;
-				particle.x += particle.dx;
-				
-				if (particle.y > height) {
-					particle.y = 0;
-				}
-				
-				if (particle.x > width) {
-					particle.reset();
-					particle.y = 0;
-				}
-				
-				ctx.beginPath();
-				ctx.arc(particle.x, particle.y, 5, 0, Math.PI * 2, false);
-				ctx.fill();
-			});
-			
-			window.requestAnimationFrame(updateParticles);
-		}
-		
-		onResize();
-		updateParticles();
-		
-		window.addEventListener('resize', onResize);
-	}
-	
-	ready(function() {
-		var canvas = document.getElementById('snow');
-		makeSnow(canvas);
-	});
-})();
+var words = document.querySelectorAll(".word");
+words.forEach(function (word) {
+    var letters = word.textContent.split("");
+    word.textContent = "";
+    letters.forEach(function (letter) {
+        var span = document.createElement("span");
+        span.textContent = letter;
+        span.className = "letter";
+        word.append(span);
+    });
+});
+var currentWordIndex = 0;
+var maxWordIndex = words.length - 1;
+words[currentWordIndex].style.opacity = "1";
+var rotateText = function () {
+    var currentWord = words[currentWordIndex];
+    var nextWord = currentWordIndex === maxWordIndex ? words[0] : words[currentWordIndex + 1];
+    // rotate out letters of current word
+    Array.from(currentWord.children).forEach(function (letter, i) {
+        setTimeout(function () {
+            letter.className = "letter out";
+        }, i * 80);
+    });
+    // reveal and rotate in letters of next word
+    nextWord.style.opacity = "1";
+    Array.from(nextWord.children).forEach(function (letter, i) {
+        letter.className = "letter behind";
+        setTimeout(function () {
+            letter.className = "letter in";
+        }, 340 + i * 80);
+    });
+    currentWordIndex =
+        currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
+};
+rotateText();
+setInterval(rotateText, 4000);
