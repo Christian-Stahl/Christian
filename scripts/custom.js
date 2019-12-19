@@ -1,36 +1,50 @@
-var words = document.querySelectorAll(".word");
-words.forEach(function (word) {
-    var letters = word.textContent.split("");
-    word.textContent = "";
-    letters.forEach(function (letter) {
-        var span = document.createElement("span");
-        span.textContent = letter;
-        span.className = "letter";
-        word.append(span);
-    });
+
+function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+
+function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+  var daysSpan = clock.querySelector('.days');
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
+
+    daysSpan.innerHTML = t.days;
+    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
+
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+
+var deadline = '2019-12-24';
+initializeClock('clockdiv', deadline);
+
+$( document ).ready(function() {
+    var listOfClasses = ["color1","color2","color3"];
+    var randomNum = Math.floor(Math.random() * listOfClasses.length); 
+    $("html").addClass(listOfClasses[randomNum]);
 });
-var currentWordIndex = 0;
-var maxWordIndex = words.length - 1;
-words[currentWordIndex].style.opacity = "1";
-var rotateText = function () {
-    var currentWord = words[currentWordIndex];
-    var nextWord = currentWordIndex === maxWordIndex ? words[0] : words[currentWordIndex + 1];
-    // rotate out letters of current word
-    Array.from(currentWord.children).forEach(function (letter, i) {
-        setTimeout(function () {
-            letter.className = "letter out";
-        }, i * 80);
-    });
-    // reveal and rotate in letters of next word
-    nextWord.style.opacity = "1";
-    Array.from(nextWord.children).forEach(function (letter, i) {
-        letter.className = "letter behind";
-        setTimeout(function () {
-            letter.className = "letter in";
-        }, 340 + i * 80);
-    });
-    currentWordIndex =
-        currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
-};
-rotateText();
-setInterval(rotateText, 4000);
+
+
