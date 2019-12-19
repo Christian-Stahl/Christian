@@ -41,6 +41,23 @@ function initializeClock(id, endtime) {
 var deadline = '2019-12-24';
 initializeClock('clockdiv', deadline);
 
+function timeOfDayFnc() {
+	var myDate = new Date();
+	var hrs = myDate.getHours();
+	var timeOfDay;
+	if (hrs < 11)
+		timeOfDay = 'morning';
+	else if (hrs >= 12 && hrs <= 17)
+		timeOfDay = 'afternoon';
+	else if (hrs >= 17 && hrs <= 24)
+		timeOfDay = 'evening';
+	else {
+		timeOfDay = 'otherTime';
+	}
+	$("html").addClass(timeOfDay);
+}
+timeOfDayFnc();
+
 // Slumpa bakgrund
 // $( document ).ready(function() {
 //     var listOfClasses = ["color1","color2"];
@@ -49,21 +66,6 @@ initializeClock('clockdiv', deadline);
 // });
 
 
-$( document ).ready(function() {
-    var myDate = new Date();
-    var hrs = myDate.getHours();
-	var timeOfDay;
-	
-		if (hrs < 11)
-			timeOfDay = 'morning';
-		else if (hrs >= 12 && hrs <= 17)
-			timeOfDay = 'afternoon';
-		else if (hrs >= 17 && hrs <= 24)
-			timeOfDay = 'evening';
-		else {
-			timeOfDay = 'otherTime';
-		}
-	
-	 $("html").addClass(timeOfDay);
-	
-});
+    
+
+
