@@ -8,6 +8,10 @@
     <link href="styles/bootstrap.min.css" rel="stylesheet">
     <link href="styles/custom.css" rel="stylesheet">
 
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
     <script type="text/javascript">
@@ -24,61 +28,44 @@
                         emailjs.sendForm('gmail', 'mycustomform', this);
             });
         }
+
+
+        $(document).ready(function() {
+                $('#contact-form').submit(function() {
+                    $("#progress").show();
+                        setTimeout(function() { 
+                            $("#progress").hide(); 
+                            location.reload(true);
+                        }
+                        , 3000
+                    );
+
+                });
+            });
+
+
     </script>
 
 </head>
 <body>
 
 
-
-    <!-- <main>
-        <article id="header"></article>
-        <article class="menu"></article>
-        <article id="clockdiv">
-            <section class="headingup">
-                God Jul från Christian!
-            </section>
-            <section class="clocks">
-                <div class="inner">
-                    <span class="days"></span>
-                    <div class="small">Dagar</div>
-                </div>
-                <div class="inner">
-                    <span class="hours"></span>
-                    <div class="small">Timmar</div>
-                </div>
-                <div class="inner">
-                    <span class="minutes"></span>
-                    <div class="small">Minuter</div>
-                </div>
-                <div class="inner">
-                    <span class="seconds"></span>
-                    <div class="small">Sekunder</div>
-                </div>
-            </section>
-            <section class="headingdown">
-                Tid kvar till Julafton...
-            </section>
-        </article>
-    </main>
-    <script src="scripts/jquery.js"></script>
-    <script src="scripts/custom.js"></script> -->
-
-
-
     <form id="contact-form">
 
         <input type="hidden" name="contact_number">
 
-        <label>Name</label>
+        <label>Your Full Name:</label>
             <input type="text" name="user_name">
-        <label>Email</label>
+        <label>Your Email:</label>
             <input type="email" name="user_email">
-        <label>Message</label>
+        <label>your Message:</label>
             <textarea name="user_message"></textarea>
                 
             <input type="submit" value="Send">
     </form>
+
+    <div id="progress">The email is sent...</div>
+
 
 
 
