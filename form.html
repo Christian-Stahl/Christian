@@ -10,21 +10,40 @@
 <body>
 
 
+
+
+
+
     <form id="myform" method="post">
-        <label>Your Name:</label>
-            <input type="text" name="user_name" />
-        <label>Your Email:</label>
-            <input type="text" name="user_email" />
-        <label>Leave a message: </label>
-            <input type="text" name="user_message" />
+
+        <!-- Title -->
+        <label>Title:</label>
+        <input type="text" name="form_title" />
+
+        <!-- Vendor's organisation name -->
+        <label>Vendor's organisation name:</label>
+        <input type="text" name="form_vendor_org_name" />
+
+        <!-- Vendor's address and location -->
+        <label>Vendor's address and location: </label>
+        <input type="text" name="form_address_loc" />
+
+
+
+
       
         <script src="https://www.google.com/recaptcha/api.js"></script>
         <div class="g-recaptcha" data-sitekey="6Lc579IUAAAAAKeq3yPZCn5BgRD7n58QrAkI8q3g"></div>
       
         <br><br>
-        <button>Send</button>
+        <button>Send!</button>
     </form>
       
+
+
+
+
+
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
     
