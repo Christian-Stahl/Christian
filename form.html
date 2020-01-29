@@ -17,19 +17,19 @@
     <form id="myform" method="post">
 
         <!-- Title -->
-        <label>Title:</label>
+        <label>Title</label>
         <input type="text" name="form_title" />
 
         <!-- Vendor's organisation name -->
-        <label>Vendor's organisation name:</label>
+        <label>Vendor's organisation name</label>
         <input type="text" name="form_vendor_org_name" />
 
         <!-- Vendor's address and location -->
-        <label>Vendor's address and location: </label>
+        <label>Vendor's address and location </label>
         <input type="text" name="form_vendor_address_loc" />
 
         <!-- Vendor's organisational number, registration number, VAT number, etc -->
-        <label>Vendor's organisational number, registration number, VAT number, etc: </label>
+        <label>Vendor's organisational number, registration number, VAT number, etc </label>
         <input type="text" name="form_vendor_orgnumber" />
 
         <!-- Name of person reporting the incident (name and email address) -->
@@ -46,13 +46,31 @@
  
         <!-- Name of contact person at NENT (name and e-mail address) -->
         <label>Name of contact person at NENT (name and e-mail address)</label>
-        <input type="text" name="form_contact_person_name_nent" />
+        <input type="text" name="form_contact_person_name_nent" />     
 
-        
+        <!-- Entity or brand within NENT affected by the issue -->
+        <label>Entity or brand within NENT affected by the issue</label>
+        <input type="text" name="form_brand_affected" />
+
+        <!-- NENT party to the agreement? (ex NENT Sweden, Viaplay, NENT Studios, NENT DK Sports etc) -->
+        <label>NENT party to the agreement? (ex NENT Sweden, Viaplay, NENT Studios, NENT DK Sports etc)</label>
+        <input type="text" name="form_nent_party_to_agreement" />
+    
+        <!-- Service, software, platform or system affected by the breach -->
+        <label>Service, software, platform or system affected by the breach</label>
+        <input type="text" name="form_service_software_platform" />
 
 
 
 
+        <!-- What is the nature of the breach reported? -->
+        <label>What is the nature of the breach reported?</label>
+        <select multiple>
+            <option value="form_nature_access">Access by an unauthorized third party</option>
+            <option value="form_nature_deliberate">Deliberate or accidental action (or inaction)</option>
+            <option value="form_nature_sending">Sending personal data to an incorrect recipient</option>
+            <option value="form_nature_computing">Computing devices containing personal data being lost or stolen</option>
+        </select>
 
 
 
