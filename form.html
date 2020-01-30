@@ -60,16 +60,13 @@
         <label>Service, software, platform or system affected by the breach</label>
         <input type="text" name="form_service_software_platform" />
 
-
-
-
         <!-- What is the nature of the breach reported? -->
         <label>What is the nature of the breach reported?</label>
-        <select name="choice" multiple>
-            <option name="form_nature_access" value="form_nature_access">Access by an unauthorized third party</option>
-            <option name="form_nature_deliberate" value="form_nature_deliberate">Deliberate or accidental action (or inaction)</option>
-            <option name="form_nature_sending" value="form_nature_sending">Sending personal data to an incorrect recipient</option>
-            <option name="form_nature_computing" value="form_nature_computing">Computing devices containing personal data being lost or stolen</option>
+        <select name="nature_breach_choice" multiple>
+            <option value="nature_access">Access by an unauthorized third party</option>
+            <option value="nature_deliberate">Deliberate or accidental action (or inaction)</option>
+            <option value="nature_sending">Sending personal data to an incorrect recipient</option>
+            <option value="nature_computing">Computing devices containing personal data being lost or stolen</option>
         </select>
 
 
